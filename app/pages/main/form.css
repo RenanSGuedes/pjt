@@ -1,0 +1,76 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+.myForm {
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
+  background: linear-gradient(125deg, rgb(236, 175, 175), rgb(221, 161, 221), rgb(223, 233, 205), rgb(223, 231, 174));
+  background-size: 400% 400%;
+  animation: bgColors 15s infinite;
+}
+
+@keyframes bgColors {
+    0% {  
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+form#auth-form {
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20vh;
+  margin: auto;
+  flex-direction: column;
+  background-color: #7159c1;
+  padding: 15px 20px 10px 20px;
+  width: 400px;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+form#auth-form input {
+  padding: 15px;
+  border-radius: 3px;
+  margin: 10px 0;
+  border: none;
+}
+
+form#auth-form button[type=submit] {
+  padding: 15px 0;
+  border: none;
+  margin-top: 10px;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.preamble {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.preamble h2 {
+  color: #fff
+}

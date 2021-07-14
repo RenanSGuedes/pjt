@@ -1,0 +1,4 @@
+app/plugins
+flot/
+mqtt-config/node_modules
+mysql-server/node_modules

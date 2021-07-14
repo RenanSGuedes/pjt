@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+div.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+button {
+  margin: 10px 0 20px 0;
+  border: 1px solid;
+  padding: 5px;
+  font-family: "Arial";
+  font-size:12pt;
+  box-shadow: 0 5px 0 darkgray;
+  cursor: pointer;
+  transition: box-shadow .3s ease, transform .3s ease;
+  top:-40px;
+  border-radius: 4px;
+}
+
+button:active {
+  box-shadow: 0 0 0 darkgray, inset 0 5px 5px darkgray;
+  transform: translate(0px, 5px);
+}

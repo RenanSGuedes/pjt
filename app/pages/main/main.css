@@ -1,0 +1,47 @@
+.fas.fa-toggle-off:hover, .fas.fa-toggle-on:hover, i.fas.fa-times {
+  cursor: pointer;
+}
+
+#popup1, #popup2, #popup3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width:170px;
+  height:170px;
+  padding:20px;
+  background-color:gray;    
+  position:absolute;
+  bottom: 30px;
+  left:200px;
+  display:none;
+  z-index: 1;
+  border-radius: 10px;
+  background-color: rgba(137, 150, 149, 0.8);
+}
+
+input#pass1, input#pass2, input#pass3, button.verify {
+  width: 90%;
+  margin: 10px;
+  border-radius: 4px;
+  border: none;
+}
+
+button.verify {
+  padding: 5px;
+  font-family: "Arial";
+  font-size:12pt;
+  box-shadow: 0 5px 0 darkgray;
+  cursor: pointer;
+  transition: box-shadow .3s ease, transform .3s ease;
+  top:-40px;
+}
+
+button.verify:active {
+  box-shadow: 0 0 0 darkgray, inset 0 5px 5px darkgray;
+  transform: translate(0px, 5px);
+}
+
+form#popup1 div, form#popup2 div, form#popup3 div {
+  display: flex;
+  justify-content: space-between;
+} 

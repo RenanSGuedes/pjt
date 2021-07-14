@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>LHI | Estufa</title>
+
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./form.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"></link>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+  <div class="myForm">
+    <div class="container">
+      <form id="auth-form" onsubmit="event.preventDefault()" method="get" action="https://localhost:3001/login">
+        <div class="preamble">
+          <h2>Entrar</h2>
+          <i class="fas fa-quote-right fa-4x" style="color:rgba(255, 255, 255,.9)"></i>
+        </div>
+        <input type="text" id="login" placeholder="Login">
+        <input type="password" id="pass" placeholder="Password">
+        <button type="submit" onclick="done()">Send</button>
+      </form>
+    </div>
+  </div>
+  <div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="./main.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../contact/contact.html" class="nav-link">Contato</a>
+      </li>
+    </ul>
+
+    
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-light-primary elevation-4">
+    
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="../../src/img/logoLHI.png" alt="Unicamp Logo" class="brand-image">
+      <span class="brand-text font-weight-light">LHI/FEAGRI/UNICAMP</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a href="#" class="d-block">Estufa - Tomate</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+  
+          <li class="nav-item">
+            <a href="./main.html" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>Principal</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../mqttCharts/mqttCharts.html" class="nav-link">
+              <i class="nav-icon fas fa-chart-line"></i>
+              <p>Gráficos</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../database/database.html" class="nav-link">
+              <i class="nav-icon fas fa-database"></i>
+              <p>Banco de dados</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../config/config.html" class="nav-link">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>Configurações</p>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+
+    <!-- Logo LHI -->
+    <a href="#" class="">
+        <img src="../../src/img/logoLHI.png" alt="Unicamp Logo" class="" style="width:50%; position: absolute;
+        left: 50%;
+        bottom: 20px;
+        transform: translate(-50%, -50%);
+        ">
+    </a>
+    <!-- ./Logo LHI -->
+
+
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Fonte de dados: MQTT</h1>
+          </div><!-- /.col -->
+         
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">        
+
+
+        <!-- Row - Ambiente -->
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Ambiente</h5>
+  
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <!-- Info boxes row -->
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="info-box mb-3 bg-gradient-secondary">
+                                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-temperature-high"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Temperatura do ar (ºC)</span>
+                                    <span class="info-box-number" name="airTemperature">30</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="info-box mb-3 bg-gradient-secondary">
+                                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cloud-sun"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Umidade relativa do ar (%)</span>
+                                    <span class="info-box-number" name="airHumidity">45.1</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row Ambiente-->
+
+        <!-- Row - Tratamento 1 -->
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Substrato (Com recirculação)</h5>
+  
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <!-- Info boxes row -->
+                    <div class="row">
+                        
+                        <div class="col-12 col-sm-6 col-md-4">
+                          <div class="air-temperature-1">
+                            <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon elevation-1" id="bg1"><i class="fas fa-toggle-off" onclick="toggleState1()"></i></span>
+                      
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Bomba</span>
+                                  <span class="info-box-number" id="pump-status1">Desligado</span>
+                              </div>
+                            <!-- /.info-box-content -->
+                            </div>
+                          <!-- /.info-box -->
+                          </div>
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-thermometer"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Temperatura do solo (ºC)</span>
+                                  <span class="info-box-number" name="soilTemperature1">30</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-water"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Umidade volumétrica (%)</span>
+                                  <span class="info-box-number" name="airHumidity1">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-wind"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Vazão (L/h)</span>
+                                  <span class="info-box-number" name="flow1">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-faucet"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Volume aplicado (L)</span>
+                                  <span class="info-box-number" name="volume1">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-ruler-vertical"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Nível no reservatório (%)</span>
+                                  <span class="info-box-number" name="level1">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->                       
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row Tratamento 1-->
+
+        <!-- Row - Tratamento 2 -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">Substrato (Sem recirculação)</h5>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                  <!-- Info boxes row -->
+                  <div class="row">
+                      
+                      <div class="col-12 col-sm-6 col-md-4">
+                        <div class="air-temperature-2">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon elevation-1" id="bg2"><i class="fas fa-toggle-off" onclick="toggleState2()"></i></span>
+                            
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Bomba</span>
+                                  <span class="info-box-number" id="pump-status2">Desligado</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-thermometer"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Temperatura do solo (ºC)</span>
+                                  <span class="info-box-number" name="soilTemperature2">30</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-water"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Umidade volumétrica (%)</span>
+                                  <span class="info-box-number" name="airHumidity2">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-wind"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Vazão (L/h)</span>
+                                  <span class="info-box-number" name="flow2">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-faucet"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Volume aplicado (L)</span>
+                                  <span class="info-box-number" name="volume2">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-ruler-vertical"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Nível no reservatório (%)</span>
+                                  <span class="info-box-number" name="level2">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+
+                      
+
+                      
+
+                  </div>
+                  <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row Tratamento 2 -->
+
+        <!-- Row - Tratamento 3 -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">NFT</h5>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                  <!-- Info boxes row -->
+                  <div class="row">
+                      
+                      <div class="col-12 col-sm-6 col-md-4">
+                        <div class="air-temperature-3">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon elevation-1" id="bg3"><i class="fas fa-toggle-off" onclick="toggleState3()"></i></span>
+                
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Bomba</span>
+                                  <span class="info-box-number" id="pump-status3">Desligado</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-water"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Umidade volumétrica (%)</span>
+                                  <span class="info-box-number" name="airHumidity3">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-wind"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Vazão (L/h)</span>
+                                  <span class="info-box-number" name="flow3">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-faucet"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Volume aplicado (L)</span>
+                                  <span class="info-box-number" name="volume3">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-ruler-vertical"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Nível no reservatório (%)</span>
+                                  <span class="info-box-number" name="level3">45.1</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-bolt"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">Condutividade elétrica (mS/cm)</span>
+                                  <span class="info-box-number" name="conductivity3">2</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="info-box mb-3 bg-gradient-secondary">
+                              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-flask"></i></span>
+
+                              <div class="info-box-content">
+                                  <span class="info-box-text">pH</span>
+                                  <span class="info-box-number" name="ph3">2</span>
+                              </div>
+                              <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                      </div>
+                    <!-- /.col -->
+
+                      
+
+                      
+
+                  </div>
+                  <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row Tratamento 3 -->
+
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    
+    <!-- Default to the left -->
+    <strong>Laboratório de Hidráulica e Irrigação - LHI/FEAGRI/UNICAMP</strong>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!--Paho MQTT-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+
+<script src="./main.js" type="text/javascript"></script>
+<script src="./obfuscated.js" type="text/javascript"></script>
+
+</body>
+</html>
