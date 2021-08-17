@@ -63,7 +63,7 @@ var divWrapper = document.querySelector("div.wrapper")
 divWrapper.style.display = "none"
 
 function done() {
-  if (login.value == "renan" && pass.value == "1234") {
+  if (login.value == "estufa" && pass.value == "feagrilhi") {
     divMyForm.style.display = "none"
     divWrapper.style.display = "block"
 
